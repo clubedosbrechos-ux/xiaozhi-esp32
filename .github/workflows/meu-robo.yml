@@ -1,0 +1,23 @@
+name: Compilar Meu Robo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: espressif/idf:v6.0.1
+    steps:
+      - name: Baixar codigo
+        uses: actions/checkout@v4
+
+      - name: Compilar firmware
+        run: |
+          python scripts/build.py bread-compact-wifi-lcd --language pt-BR --zip
+
+      - name: Salvar arquivo pronto
+        uses: actions/upload-artifact@v4
+        with:
+          name: meu-robo-pronto
+          path: build/*.zip
