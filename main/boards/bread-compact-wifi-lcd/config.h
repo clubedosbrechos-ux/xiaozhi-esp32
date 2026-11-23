@@ -9,7 +9,7 @@
 // Barramentos I2S separados para Microfone e Amplificador NS4168
 #define AUDIO_I2S_METHOD_SIMPLEX
 
-// Microfone INMP441 (com SCK ajustado para o GPIO 8)
+// Microfone INMP441 (com SCK no GPIO 8)
 #define AUDIO_I2S_MIC_GPIO_WS   GPIO_NUM_4
 #define AUDIO_I2S_MIC_GPIO_SCK  GPIO_NUM_8
 #define AUDIO_I2S_MIC_GPIO_DIN  GPIO_NUM_6
@@ -19,7 +19,7 @@
 #define AUDIO_I2S_SPK_GPIO_BCLK GPIO_NUM_16
 #define AUDIO_I2S_SPK_GPIO_LRCK GPIO_NUM_15
 
-// Tela LCD 2" ST7789 integrada da Waveshare ESP32-S3-LCD-2
+// Pinos internos da Tela LCD 2" ST7789 (Waveshare ESP32-S3-LCD-2)
 #define DISPLAY_BACKLIGHT_PIN GPIO_NUM_1
 #define DISPLAY_MOSI_PIN      GPIO_NUM_38
 #define DISPLAY_CLK_PIN       GPIO_NUM_39
@@ -27,6 +27,7 @@
 #define DISPLAY_RST_PIN       GPIO_NUM_NC
 #define DISPLAY_CS_PIN        GPIO_NUM_45
 
+#if defined(LCD_ST7789_240X320) || defined(LCD_ST7789_240X320_NO_IPS) || !defined(DISPLAY_WIDTH)
 #define DISPLAY_WIDTH   240
 #define DISPLAY_HEIGHT  320
 #define DISPLAY_MIRROR_X false
@@ -37,6 +38,7 @@
 #define DISPLAY_OFFSET_X  0
 #define DISPLAY_OFFSET_Y  0
 #define DISPLAY_BACKLIGHT_OUTPUT_INVERT false
+#endif
 
 // Câmera OV5640 no conector FPC da Waveshare ESP32-S3-LCD-2
 #define CAMERA_PIN_PWDN     GPIO_NUM_NC
